@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/cancellation-refund", "destination": "/cancellation-refund-policy.html" },
+    { "source": "/cancellation-refund-policy", "destination": "/cancellation-refund-policy.html" },
+    { "source": "/package-details", "destination": "/package-details.html" },
+    { "source": "/plan-my-trip", "destination": "/plan-my-trip.html" },
+    { "source": "/how-it-works", "destination": "/how-it-works.html" },
+    { "source": "/terms-conditions", "destination": "/terms-conditions.html" },
+    { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/quote", "destination": "/quote.html" }
+  ]
+}

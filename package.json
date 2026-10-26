@@ -1,0 +1,20 @@
+{
+  "name": "travel-grow-consultancy",
+  "version": "1.0.0",
+  "description": "TravelGrow Consultancy - Modern, professional, responsive travel agency website for manual flight & holiday quotations",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "travel-agency",
+    "consultancy",
+    "flights",
+    "holidays",
+    "quotations",
+    "travelgrowconsultancy"
+  ],
+  "author": "TravelGrow Consultancy",
+  "license": "ISC"
+}

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | TravelGrow Consultancy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- 1. LOGIN SCREEN -->
+  <div class="login-wrapper" id="loginWrapper">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="login-brand-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h1 class="login-title">TravelGrow Admin Desk</h1>
+        <p class="login-subtitle">Sign in to access consultancy management and quotation engine</p>
+      </div>
+
+      <div class="login-alert" id="loginAlert"></div>
+
+      <form class="login-form" id="adminLoginForm">
+        <div class="form-group">
+          <label for="loginUsername">Username or Admin Email</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username" placeholder="e.g. tg_admin">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Master Password</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password" placeholder="••••••••••••">
+        </div>
+        <button type="submit" class="login-btn" id="loginSubmitBtn">
+          Authorize & Enter
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. MAIN DASHBOARD APPLICATION -->
+  <div class="admin-layout" id="adminDashboard" style="display: none;">
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand" target="_blank" title="View public website">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2.5"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+          <span>Travel<span style="color: var(--admin-orange-500);">Grow</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-link active" data-tab="overview">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Overview
+        </a>
+        <a class="nav-link" data-tab="enquiries">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          Enquiries <span class="badge" id="navNewBadge" style="margin-left: auto; background: var(--admin-orange-500); color: #fff; padding: 2px 7px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; display: none;">0</span>
+        </a>
+        <a class="nav-link" data-tab="packages">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Holiday Packages
+        </a>
+        <a class="nav-link" data-tab="destinations">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Destinations
+        </a>
+        <a class="nav-link" data-tab="quotations">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Quotations
+        </a>
+        <a class="nav-link" data-tab="setup">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Setup &amp; Security
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar" id="sidebarAvatar">A</div>
+          <div>
+            <div style="font-weight: 700; color: #ffffff;" id="sidebarUserName">Admin User</div>
+            <div style="font-size: 0.75rem; color: var(--admin-slate-400); text-transform: uppercase;" id="sidebarUserRole">Senior Agent</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main">
+      <header class="top-navbar">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <button type="button" class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Toggle menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="page-title-wrap">
+            <h2 class="page-title" id="pageTitle">Consultancy Overview</h2>
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <a href="index.html" target="_blank" class="btn-sm btn-secondary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+            <span>Public Site</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+          <button type="button" class="logout-btn" id="logoutBtn">
+            Sign Out
+          </button>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <!-- TAB 1: OVERVIEW -->
+        <section class="tab-panel active" id="tab-overview">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon orange">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="statNewCount">0</div>
+                <div class="stat-label">New Enquiries</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="statContactedCount">0</div>
+                <div class="stat-label">Contacted</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="statQuotesCount">0</div>
+                <div class="stat-label">Quotes Sent</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div>
+                <div class="stat-val" id="statConfirmedCount">0</div>
+                <div class="stat-label">Confirmed Bookings</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="content-box-title">Recent Customer Enquiries</h3>
+              <button type="button" class="btn-sm btn-primary" onclick="switchTab('enquiries')">
+                View All Enquiries →
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Ref No.</th>
+                    <th>Type</th>
+                    <th>Customer Name</th>
+                    <th>Destination</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="overviewRecentTable">
+                  <tr><td colspan="7" style="text-align: center; color: var(--admin-slate-500); padding: 24px;">Loading recent enquiries...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: ENQUIRIES MANAGEMENT -->
+        <section class="tab-panel" id="tab-enquiries">
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="content-box-title">Client Enquiry Intake Hub</h3>
+              <div style="font-size: 0.85rem; color: var(--admin-slate-500);">
+                Total: <strong id="enquiriesTotalCount">0</strong>
+              </div>
+            </div>
+
+            <div class="filter-bar">
+              <div class="search-input-wrap">
+                <span class="search-icon">
+                  <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input type="text" class="search-input" id="enquirySearchInput" placeholder="Search by Ref, Name, Phone, Email, Destination...">
+              </div>
+
+              <select class="filter-select" id="enquiryTypeFilter">
+                <option value="all">All Enquiry Types</option>
+                <option value="flight">Flight Deal Enquiries</option>
+                <option value="holiday">Custom Holiday Packages</option>
+                <option value="general">Advisory &amp; Callbacks</option>
+              </select>
+
+              <select class="filter-select" id="enquiryStatusFilter">
+                <option value="all">All Statuses</option>
+                <option value="New">New</option>
+                <option value="Contacted">Contacted</option>
+                <option value="Quote Sent">Quote Sent</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+
+              <button type="button" class="btn-sm btn-secondary" id="refreshEnquiriesBtn" style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                <span>Refresh</span>
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Ref No.</th>
+                    <th>Type</th>
+                    <th>Customer Name</th>
+                    <th>Contact Phone</th>
+                    <th>Destination</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                    <th>Received</th>
+                    <th>Manage</th>
+                  </tr>
+                </thead>
+                <tbody id="enquiriesTableBody">
+                  <tr><td colspan="9" style="text-align: center; color: var(--admin-slate-500); padding: 32px;">Loading client enquiries from database...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: HOLIDAY PACKAGES -->
+        <section class="tab-panel" id="tab-packages">
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="content-box-title">Holiday Packages Catalog</h3>
+              <button type="button" class="btn-sm btn-primary" id="openNewPackageModalBtn">
+                + Create New Package
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Package Details</th>
+                    <th>Region</th>
+                    <th>Duration</th>
+                    <th>Indicative Price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="packagesTableBody">
+                  <tr><td colspan="6" style="text-align: center; color: var(--admin-slate-500); padding: 32px;">Loading packages from database...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: DESTINATIONS -->
+        <section class="tab-panel" id="tab-destinations">
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="content-box-title">Featured Travel Destinations</h3>
+              <button type="button" class="btn-sm btn-primary" id="openNewDestModalBtn">
+                + Add Destination
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Destination Name</th>
+                    <th>Region</th>
+                    <th>Indicative Flight</th>
+                    <th>Indicative Package</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="destinationsTableBody">
+                  <tr><td colspan="6" style="text-align: center; color: var(--admin-slate-500); padding: 32px;">Loading destinations...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: QUOTATIONS -->
+        <section class="tab-panel" id="tab-quotations">
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="content-box-title">Official Client Quotations</h3>
+              <button type="button" class="btn-sm btn-primary" id="openNewQuoteModalBtn">
+                + Generate Quotation
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Quote Ref</th>
+                    <th>Customer Name</th>
+                    <th>Destination</th>
+                    <th>Total Price</th>
+                    <th>Validity Window</th>
+                    <th>Status</th>
+                    <th>Share Link</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="quotationsTableBody">
+                  <tr><td colspan="8" style="text-align: center; color: var(--admin-slate-500); padding: 32px;">Loading quotations...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 6: SETUP & SECURITY -->
+        <section class="tab-panel" id="tab-setup">
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="content-box-title">Security Architecture &amp; Database Setup</h3>
+            </div>
+            <div style="padding: 24px; line-height: 1.7; font-size: 0.9375rem; color: var(--admin-slate-700);">
+              <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--admin-navy-900); margin-bottom: 12px;">Persistent Database &amp; Zero Hardcoded Secrets</h4>
+              <p style="margin-bottom: 16px;">
+                All customer enquiries, official quotations, holiday packages, and agency notes are persisted in <code>data/enquiries.db</code> via Node.js v22 built-in <code>node:sqlite</code> with zero external dependencies. Admin credentials use <strong>scrypt</strong> cryptographic hashing with 16-byte random salts. Plain text passwords are never stored.
+              </p>
+
+              <div class="conditions-box" style="margin-bottom: 24px; background: #F8FAFC; border-left: 4px solid var(--admin-orange-500); padding: 16px;">
+                <strong>Initial Admin Setup Command:</strong><br>
+                <code>node scripts/create_admin.js &lt;username&gt; &lt;email&gt; &lt;password&gt; [fullName] [role]</code><br><br>
+                <strong>Example:</strong><br>
+                <code>node scripts/create_admin.js tg_admin admin@travelgrowconsultancy.com "YourSecurePass2026!" "Sarah Jenkins" admin</code>
+              </div>
+
+              <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--admin-navy-900); margin-bottom: 12px;">Environment Variables</h4>
+              <ul style="padding-left: 20px; margin-bottom: 24px;">
+                <li><code>WHATSAPP_PHONE</code>: Set verified international WhatsApp number (e.g. <code>+442079460991</code>). Never set a dummy number.</li>
+                <li><code>PORT</code>: Set custom listening port (default: <code>3000</code>).</li>
+                <li><code>ADMIN_BOOTSTRAP_USER</code> / <code>ADMIN_BOOTSTRAP_PASS</code>: (Optional) Automatically bootstrap initial admin account on container or cloud initialization.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL 1: ENQUIRY DETAILS & MANAGEMENT DRAWER -->
+  <div class="modal-overlay" id="enquiryDetailModal">
+    <div class="modal-box" style="max-width: 780px;">
+      <div class="modal-header">
+        <div>
+          <div style="font-size: 0.75rem; color: var(--admin-slate-500); font-weight: 700; text-transform: uppercase;">Customer Consultation Request</div>
+          <div class="modal-title" id="drawerRefNo">TGC-FLT-2026-XXXX</div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('enquiryDetailModal')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Customer & Travel Details Grid -->
+        <div class="detail-grid" id="drawerDetailsGrid">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Status & Assignment Form -->
+        <div style="background: var(--admin-slate-50); border: 1px solid var(--admin-slate-200); border-radius: var(--admin-radius-md); padding: 16px; margin-bottom: 24px;">
+          <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; color: var(--admin-navy-900);">Consultation Status &amp; Agent Assignment</h4>
+          <div class="form-row">
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--admin-slate-600); display: block; margin-bottom: 4px;">Update Status:</label>
+              <div style="display: flex; gap: 8px;">
+                <select id="drawerStatusSelect" class="filter-select" style="flex: 1;">
+                  <option value="New">New</option>
+                  <option value="Contacted">Contacted</option>
+                  <option value="Quote Sent">Quote Sent</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+                <button type="button" class="btn-sm btn-primary" id="drawerUpdateStatusBtn">Update</button>
+              </div>
+            </div>
+
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--admin-slate-600); display: block; margin-bottom: 4px;">Assign Agent:</label>
+              <div style="display: flex; gap: 8px;">
+                <select id="drawerAgentSelect" class="filter-select" style="flex: 1;">
+                  <option value="">Unassigned</option>
+                </select>
+                <button type="button" class="btn-sm btn-secondary" id="drawerAssignBtn">Assign</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 12px; text-align: right;">
+            <button type="button" class="btn-sm btn-primary" id="drawerQuickQuoteBtn">
+              + Generate Official Quotation for this Client
+            </button>
+          </div>
+        </div>
+
+        <!-- Internal Notes Thread -->
+        <div class="notes-container">
+          <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; color: var(--admin-navy-900);">Internal Consultation Notes (Private &amp; Audited)</h4>
+          <div class="notes-list" id="drawerNotesList">
+            <p style="font-size: 0.85rem; color: var(--admin-slate-500);">No internal notes added yet.</p>
+          </div>
+
+          <form id="addNoteForm" style="display: flex; gap: 10px;">
+            <input type="text" id="newNoteInput" style="flex: 1; padding: 10px 14px; border: 1px solid var(--admin-slate-300); border-radius: var(--admin-radius-md); font-size: 0.875rem;" placeholder="Add internal agent note (e.g. Called client, requested Emirates flight quote)..." required>
+            <button type="submit" class="btn-sm btn-primary" id="submitNoteBtn">Add Note</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: PACKAGE CREATE/EDIT -->
+  <div class="modal-overlay" id="packageModal">
+    <div class="modal-box" style="max-width: 720px;">
+      <div class="modal-header">
+        <div class="modal-title" id="packageModalTitle">Create Holiday Package</div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('packageModal')">&times;</button>
+      </div>
+
+      <form id="packageForm">
+        <input type="hidden" id="pkgEditId">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pkgTitle">Package Title *</label>
+              <input type="text" id="pkgTitle" required placeholder="e.g. Bali Tropical Serenity &amp; Ubud Retreat">
+            </div>
+            <div class="form-group">
+              <label for="pkgDestination">Destination *</label>
+              <input type="text" id="pkgDestination" required placeholder="e.g. Bali, Indonesia">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pkgRegion">Region *</label>
+              <select id="pkgRegion" required>
+                <option value="asia">Asia</option>
+                <option value="europe">Europe</option>
+                <option value="middle-east">Middle East</option>
+                <option value="islands">Tropical Islands</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pkgDuration">Duration *</label>
+              <input type="text" id="pkgDuration" required placeholder="e.g. 8 Days / 7 Nights">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pkgPrice">Indicative Price *</label>
+              <input type="text" id="pkgPrice" required placeholder="e.g. From ₹45,000pp">
+            </div>
+            <div class="form-group">
+              <label for="pkgTag">Badge / Tag</label>
+              <input type="text" id="pkgTag" placeholder="e.g. Relaxation &amp; Culture">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pkgHeroImage">Hero Image URL *</label>
+            <input type="url" id="pkgHeroImage" required placeholder="https://images.unsplash.com/photo-...">
+          </div>
+
+          <div class="form-group">
+            <label for="pkgDescription">Overview Description *</label>
+            <textarea id="pkgDescription" required placeholder="Comprehensive description of this holiday package experience..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pkgInclusions">Inclusions (one per line) *</label>
+              <textarea id="pkgInclusions" required placeholder="4 nights Ubud Boutique Villa&#10;Daily Balinese breakfasts&#10;Private chauffeur transfers"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="pkgExclusions">Exclusions (one per line) *</label>
+              <textarea id="pkgExclusions" required placeholder="International flights (custom quote available)&#10;Travel insurance&#10;Personal spending"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-sm btn-secondary" onclick="closeModal('packageModal')">Cancel</button>
+          <button type="submit" class="btn-sm btn-primary" id="savePackageSubmitBtn">Save Package</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: GENERATE QUOTATION -->
+  <div class="modal-overlay" id="quotationModal">
+    <div class="modal-box" style="max-width: 760px;">
+      <div class="modal-header">
+        <div>
+          <div style="font-size: 0.75rem; color: var(--admin-slate-500); font-weight: 700; text-transform: uppercase;">Official Client Proposal</div>
+          <div class="modal-title">Generate Custom Travel Quotation</div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('quotationModal')">&times;</button>
+      </div>
+
+      <form id="quotationForm">
+        <input type="hidden" id="qEnquiryId">
+        <input type="hidden" id="qEnquiryRef">
+
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="qCustomerName">Customer Full Name *</label>
+              <input type="text" id="qCustomerName" required placeholder="e.g. Amara Vance">
+            </div>
+            <div class="form-group">
+              <label for="qDestination">Destination *</label>
+              <input type="text" id="qDestination" required placeholder="e.g. Tokyo &amp; Kyoto, Japan">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="qCustomerEmail">Customer Email (Optional)</label>
+              <input type="email" id="qCustomerEmail" placeholder="client@example.com">
+            </div>
+            <div class="form-group">
+              <label for="qCustomerPhone">Customer Phone</label>
+              <input type="text" id="qCustomerPhone" placeholder="+91 98765 43210">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="qTitle">Proposal Title *</label>
+            <input type="text" id="qTitle" required placeholder="e.g. 10-Day Japan Golden Route with Bullet Trains &amp; Onsen Ryokan">
+          </div>
+
+          <div class="form-group">
+            <label for="qTravelOptions">Travel Options Breakdown *</label>
+            <textarea id="qTravelOptions" required placeholder="Option 1: Direct flights + 4* Boutique Resort&#10;Option 2: Premium Economy + Private Pool Villa" style="min-height: 90px;"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="qTotalPrice">Total Quoted Price *</label>
+              <input type="text" id="qTotalPrice" required placeholder="e.g. ₹1,25,000 Total for 2 Passengers">
+            </div>
+            <div class="form-group">
+              <label for="qValidityDate">Price Validity Window *</label>
+              <input type="text" id="qValidityDate" required placeholder="e.g. Valid until 28 Oct 2026 (Airline fare hold)">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="qPriceBreakdown">Price Notes / Inclusions Summary</label>
+            <input type="text" id="qPriceBreakdown" placeholder="e.g. Includes flights, luggage, 4-star boutique hotels, all taxes. Advance ₹25,000pp.">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="qInclusions">Inclusions (one per line) *</label>
+              <textarea id="qInclusions" required placeholder="All international flight segments &amp; 23kg luggage&#10;Boutique 4* hotel accommodations&#10;Chauffeured airport transfers&#10;24/7 dedicated TravelGrow concierge"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="qExclusions">Exclusions (one per line) *</label>
+              <textarea id="qExclusions" required placeholder="Travel and medical cancellation insurance&#10;Personal meals outside breakfast plan&#10;Optional private helicopter tour"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="qConditions">Cancellation &amp; Modification Conditions *</label>
+            <textarea id="qConditions" required placeholder="Refundable up to 21 days before departure less airline ticket reissue fee. Full details supplied in booking confirmation agreement."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-sm btn-secondary" onclick="closeModal('quotationModal')">Cancel</button>
+          <button type="submit" class="btn-sm btn-primary" id="saveQuotationSubmitBtn">Generate Official Quotation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

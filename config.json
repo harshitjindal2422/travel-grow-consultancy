@@ -1,0 +1,25 @@
+{
+  "agency": {
+    "name": "TravelGrow Consultancy",
+    "domain": "travelgrowconsultancy.com",
+    "email": "enquiries@travelgrowconsultancy.com",
+    "phone": "+91 98765 43210 (Client Phone Placeholder)",
+    "businessHours": "Mon-Sat: 09:30 - 19:30 IST",
+    "timezone": "Asia/Kolkata",
+    "address": "[OFFICIAL BUSINESS ADDRESS - Delhi / Bengaluru / Mumbai / Pune, India]"
+  },
+  "whatsapp": {
+    "configured": false,
+    "phoneNumber": "",
+    "prefilledMessageTemplate": "Hello TravelGrow Consultancy, I have submitted enquiry {REF_CODE} for {DESTINATION} and would like to speak with a travel expert.",
+    "directChatTemplate": "Hello TravelGrow Consultancy, I would like to request an obligation-free quotation for my upcoming travel plans."
+  },
+  "rateLimit": {
+    "windowMinutes": 10,
+    "maxRequestsPerWindow": 100
+  },
+  "security": {
+    "honeypotFieldName": "website_url",
+    "requirePrivacyConsent": true
+  }
+}
